@@ -1,0 +1,98 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *, .dark));
+
+/* Focal palette — pale sage ground, near-black ink, one signal accent. */
+:root {
+  --radius: 1rem;
+  --background: #edefe9;
+  --foreground: #15171c;
+  --card: #ffffff;
+  --card-foreground: #15171c;
+  --popover: #ffffff;
+  --popover-foreground: #15171c;
+  --primary: #15171c;
+  --primary-foreground: #f4f5f0;
+  --secondary: #e2e5dd;
+  --secondary-foreground: #15171c;
+  --muted: #e2e5dd;
+  --muted-foreground: #5b6068;
+  --accent: #e2e5dd;
+  --accent-foreground: #15171c;
+  --destructive: #c23a17;
+  --border: #d6d9d0;
+  --input: #b9bdb3;
+  --ring: #2f5bd3;
+  --signal: #d9431e;
+  --signal-foreground: #ffffff;
+  --ink: #15171c;
+}
+
+/* Used by Focus mode and the "current" card: flips the tokens to ink. */
+.dark {
+  --background: #15171c;
+  --foreground: #f4f5f0;
+  --card: #1d2027;
+  --card-foreground: #f4f5f0;
+  --popover: #1d2027;
+  --popover-foreground: #f4f5f0;
+  --primary: #f4f5f0;
+  --primary-foreground: #15171c;
+  --secondary: #262a31;
+  --secondary-foreground: #f4f5f0;
+  --muted: #2a2e36;
+  --muted-foreground: #b8bcc4;
+  --accent: #262a31;
+  --accent-foreground: #f4f5f0;
+  --border: #2a2e36;
+  --input: #4a4f58;
+  --ring: #8fb0ff;
+}
+
+@theme inline {
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-bricolage), var(--font-inter), sans-serif;
+  --font-mono: var(--font-jetbrains), ui-monospace, monospace;
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-signal: var(--signal);
+  --color-signal-foreground: var(--signal-foreground);
+  --color-ink: var(--ink);
+
+  --radius-sm: calc(var(--radius) - 6px);
+  --radius-md: calc(var(--radius) - 4px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+  }
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
+}
