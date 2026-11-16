@@ -2,13 +2,17 @@
 
 import * as React from "react";
 
-/** Today's date in the viewer's timezone. Empty during SSR to avoid a hydration mismatch. */
+const subscribeNever = () => () => {};
+
+export function formatTodayLabel(date: Date = new Date()): string {
+  return date.toLocaleDateString("en-US", { weekday: "long", day: "numeric", month: "long" });
+}
+
+/** Today's date in the viewer's timezone. Empty during SSR so the markup matches on hydration. */
 export function useTodayLabel(): string {
-  const [label, setLabel] = React.useState("");
-  React.useEffect(() => {
-    setLabel(
-      new Date().toLocaleDateString("en-US", { weekday: "long", day: "numeric", month: "long" })
-    );
-  }, []);
-  return label;
+  return React.useSyncExternalStore(
+    subscribeNever,
+    () => formatTodayLabel(),
+    () => ""
+  );
 }
